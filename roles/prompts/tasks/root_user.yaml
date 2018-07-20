@@ -1,0 +1,25 @@
+- name: Add bash_profile file
+  file:
+    dest: /root/.bash_profile
+    state: touch
+    owner: root
+
+- name: Test for line
+  shell: /bin/grep "export PS1=" /root/.bash_profile
+  register: test_grep
+  failed_when: test_grep.rc not in [1, 0]
+
+- name: add prompt config to bash_profile
+  lineinfile:
+    dest: /root/.bash_profile
+    state: present
+    line: 'export PS1="{{ root_prompt_pattern }}"'
+  when: test_grep.stdout == ""
+
+- name: add prompt config to bash_profile
+  lineinfile:
+    dest: /root/.bash_profile
+    state: present
+    line: 'export PS1="{{ root_prompt_pattern }}"'
+    regexp: 'export PS1='
+  when: test_grep.stdout != ""

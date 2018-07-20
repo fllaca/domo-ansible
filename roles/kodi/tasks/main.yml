@@ -1,0 +1,4 @@
+- name: Install Kodi
+  apt:
+    name: kodi
+    state: present

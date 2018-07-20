@@ -1,0 +1,36 @@
+---
+- name: Download sources
+  git:
+    repo: "https://github.com/fllaca/py-http-shell"
+    dest: "{{ py_http_shell_home }}"
+
+- name: Assign file permissions
+  file:
+    name: "{{ py_http_shell_home }}"
+    owner: "{{ py_http_shell_user }}"
+
+- name:
+  package:
+    name: python3-pip
+    state: present
+
+- name: Install Common PiP packages
+  pip: 
+    name: virtualenv
+
+- name: Install requirements
+  pip: 
+    requirements: "{{ py_http_shell_home }}/requirements.txt"
+    virtualenv: "{{ py_http_shell_home }}/venv"
+    virtualenv_python: python3
+
+- name: Install service
+  template:
+    src: httpshell.service.j2
+    dest: /etc/systemd/system/httpshell.service
+
+- name: Start service
+  systemd: 
+    state: started 
+    name: httpshell
+    daemon_reload: yes

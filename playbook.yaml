@@ -1,0 +1,18 @@
+- hosts: torrent_servers
+  become: true
+
+  roles:
+    - role: deluged
+
+
+- hosts: media_servers
+  become: true
+
+  roles:
+    # - role: kodi
+    # - role: py-http-shell
+    - role: prompts
+      root_prompt_pattern: "{{ RED }}[{{ END }}{{ CYAN }}\\u{{ END }}{{ LIGHT_GRAY }}@{{ END }}{{ RED }}\\h \\W]\\$ {{ END }}"
+      user_prompts:
+      - user: popiland
+        pattern: "{{ GREEN }}[{{ END }}{{ CYAN }}\\u{{ END }}{{ LIGHT_GRAY }}@{{ END }}{{ GREEN }}\\h {{ END }}{{ LIGHT_GRAY }}\\W{{ END }}{{ GREEN }}]\\$ {{ END }}"
