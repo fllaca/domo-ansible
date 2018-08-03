@@ -1,7 +1,9 @@
 ---
 - hosts: tv2
+  become: yes
   roles:
   - cloudalchemy.prometheus
+  - cloudalchemy.grafana
   vars:
     prometheus_targets:
       node:
@@ -22,3 +24,9 @@
       metrics_path: "/api/prometheus"
       params:
         api_password: ["{{ homeassistant_api_password }}"]
+    grafana_datasources:
+    - name: prometheus
+      type: prometheus
+      access: proxy
+      url: 'http://localhost:9090'
+      basicAuth: false

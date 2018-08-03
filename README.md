@@ -11,5 +11,5 @@ ansible-galaxy install -r requirements.yml
 ## Run Playbooks
 
 ```
-ansible-playbook -i inventory -e @secrets.yaml prometheus.yaml
+ansible-playbook -i inventory -e @secrets.yaml monitoring.yaml
 ```
