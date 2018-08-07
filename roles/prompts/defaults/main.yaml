@@ -1,13 +1,13 @@
-BLACK: \e[0;30m
-BLUE: \e[0;34m
-GREEN: \e[0;32m
-CYAN: \e[0;36m
-RED: \e[0;31m
-PURPLE: \e[0;35m
-BROWN: \e[0;33m
-WHITE: \e[0;0m
-LIGHT_GRAY: \e[0;37m
+BLACK: \[\e[0;30m\]
+BLUE: \[\e[0;34m\]
+GREEN: \[\e[0;32m\]
+CYAN: \[\e[0;36m\]
+RED: \[\e[0;31m\]
+PURPLE: \[\e[0;35m\]
+BROWN: \[\e[0;33m\]
+WHITE: \[\e[0;0m\]
+LIGHT_GRAY: \[\e[0;37m\]
 
-END: \e[m
+END: \[\e[m\]
 
 user_prompts: []
