@@ -1,0 +1,27 @@
+- name: Install requirements
+  apt:
+    name: software-properties-common
+    state: present
+
+- name: Install xbmc repository
+  apt_repository:
+    repo: ppa:team-xbmc/ppa
+
+- name: Install Kodi
+  apt:
+    name: kodi
+    state: present
+    update_cache: yes
+
+- name: Install Kodi Extra Packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items: "{{ kodi_extra_packages }}"
+
+- name: Create start-kodi script
+  copy:
+    src: start-kodi
+    dest: /usr/local/bin/start-kodi
+    mode: +x

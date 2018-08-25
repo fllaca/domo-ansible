@@ -1,0 +1,4 @@
+kodi_extra_packages:
+  - kodi-pvr-hts
+
+install_tvheadend: yes

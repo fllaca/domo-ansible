@@ -1,4 +1,4 @@
-- name: Install Kodi
-  apt:
-    name: kodi
-    state: present
+- include_tasks: kodi.yaml
+
+- include_tasks: tvheadend.yaml
+  when: install_tvheadend

@@ -1,0 +1,9 @@
+#!/bin/bash
+KODI_PID=$(pgrep kodi.bin)
+
+if [ -z "$KODI_PID" ]
+then
+  kodi
+else
+  echo "Kodi already running with pid ${KODI_PID}"
+fi
