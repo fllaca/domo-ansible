@@ -1,0 +1,22 @@
+---
+- name: "create config directory for {{ service_name }} service"
+  file:
+    name: "/etc/docker-{{ service_name }}"
+    state: directory
+
+- name: "generate Docker-Compose File for {{ service_name }} service"
+  template:
+    src: docker-compose.yaml.j2
+    dest: "/etc/docker-{{ service_name }}/docker-compose.yaml"
+
+- name: "generate {{ service_name }} service unit"
+  template:
+    src: docker-service.j2
+    dest: "/etc/systemd/system/docker-{{ service_name }}.service"
+
+- name: "Bounce Service {{ service_name }}"
+  systemd:
+    name: "docker-{{ service_name }}.service"
+    enabled: "yes"
+    daemon_reload: "yes"
+    state: "restarted"
