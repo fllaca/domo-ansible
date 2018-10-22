@@ -11,3 +11,5 @@ LIGHT_GRAY: \[\e[0;37m\]
 END: \[\e[m\]
 
 user_prompts: []
+
+# default_prompt_pattern: 

@@ -1,0 +1,5 @@
+- name: Create /etc/profile.d/default_prompt.sh 
+  copy:
+    dest: /etc/profile.d/default_prompt.sh
+    content: "export PS1=\"{{ default_prompt_pattern }}\""
+    owner: root

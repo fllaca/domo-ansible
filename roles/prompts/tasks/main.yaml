@@ -2,4 +2,7 @@
 - include_tasks: root_user.yaml
   when: root_prompt_pattern is defined
 
+- include_tasks: default_prompt.yaml
+  when: default_prompt_pattern is defined
+
 - include_tasks: other_users.yaml
