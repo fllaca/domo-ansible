@@ -1,0 +1,5 @@
+---
+# key_binds:
+#   - shortcut: Mod2+Mod5 + o
+#     command: firefox
+key_binds: []
