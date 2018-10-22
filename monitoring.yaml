@@ -1,32 +1,11 @@
 ---
-- hosts: tv2
+- hosts: all
+  become: yes
+  roles:
+  - cloudalchemy.node-exporter
+
+- hosts: monitoring
   become: yes
   roles:
   - cloudalchemy.prometheus
   - cloudalchemy.grafana
-  vars:
-    prometheus_targets:
-      node:
-      - targets:
-        - 192.168.1.135:8123 # TODO: remove this hardcoded value
-        labels:
-          env: homeassistant
-    prometheus_scrape_configs:
-    - job_name: "prometheus"    # Custom scrape job, here using `static_config`
-      metrics_path: "/metrics"  
-      static_configs:
-        - targets:
-            - "localhost:9090"
-    - job_name: "homeassistant"
-      file_sd_configs:
-        - files:
-            - "{{ prometheus_config_dir }}/file_sd/node.yml"
-      metrics_path: "/api/prometheus"
-      params:
-        api_password: ["{{ homeassistant_api_password }}"]
-    grafana_datasources:
-    - name: prometheus
-      type: prometheus
-      access: proxy
-      url: 'http://localhost:9090'
-      basicAuth: false

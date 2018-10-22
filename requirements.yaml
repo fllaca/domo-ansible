@@ -1,3 +1,20 @@
-- src: cloudalchemy.prometheus
+- name: cloudalchemy.prometheus
+  src: https://github.com/cloudalchemy/ansible-prometheus
+  version: "2.3.2"
 
-- src: cloudalchemy.grafana
+- name: cloudalchemy.grafana
+  src: https://github.com/cloudalchemy/ansible-grafana
+  version: "0.11.0"
+
+- name: geerlingguy.docker
+  src: https://github.com/geerlingguy/ansible-role-docker
+  version: "2.5.1"
+
+- name: geerlingguy.mysql
+  src: https://github.com/geerlingguy/ansible-role-mysql
+  version: "2.9.4"
+
+- name: cloudalchemy.node-exporter
+  src: https://github.com/cloudalchemy/ansible-node-exporter
+  version: "0.11.2"
+  

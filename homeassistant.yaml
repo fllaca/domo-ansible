@@ -1,0 +1,19 @@
+- hosts: homeassistant
+  become: yes
+
+  roles:
+  - role: geerlingguy.docker
+
+  - role: hass-config
+    
+  - role: docker-service
+    service_name: homeassistant
+    docker_compose_file:
+      version: '3'
+      services:
+        homeassistant:
+          image: homeassistant/home-assistant:0.75.3
+          volumes:
+            - "/var/lib/homeassistant:/config"
+            - "/etc/localtime:/etc/localtime:ro"
+          network_mode: "host"
