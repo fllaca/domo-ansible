@@ -1,0 +1,48 @@
+---
+- name: Check that the '/etc/init.d/deluged' exists
+  stat:
+    path: /etc/init.d/deluged
+  register: stat_result
+
+- name: Disable Old Deluged start scripts
+  shell: |-
+    /etc/init.d/deluged stop && \
+    rm /etc/init.d/deluged && \
+    update-rc.d deluged remove
+  when: stat_result.stat.exists
+
+- name: Create deluge user
+  user:
+    name: deluge
+    shell: /bin/bash
+
+- name: Copy configuration
+  template:
+    src: core.conf.j2
+    dest: /home/deluge/.config/deluge/core.conf
+    owner: deluge
+    group: deluge
+
+- name: Install 'deluged' service
+  copy:
+    src: deluged.ini
+    dest: /etc/systemd/system/deluged.service
+
+- name: Enable and start 'deluged' service
+  systemd:
+    name: deluged
+    enabled: yes
+    daemon_reload: yes
+    state: restarted
+
+- name: Install 'deluge-web' service
+  copy:
+    src: deluge-web.ini
+    dest: /etc/systemd/system/deluge-web.service
+
+- name: Enable and start 'deluge-web' service
+  systemd:
+    name: deluge-web
+    enabled: yes
+    daemon_reload: yes
+    state: restarted

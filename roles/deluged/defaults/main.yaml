@@ -1,0 +1,3 @@
+---
+# mount -t ntfs -ouser,umask=0000 /dev/sdb1 /srv/data/
+deluged_downloads_dir: /srv/data/Downloads

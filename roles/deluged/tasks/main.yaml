@@ -1,8 +1,4 @@
-- package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - deluge
-    - deluged
-    - deluge-web
+---
+- include_tasks: packages.yaml
 
+- include_tasks: deluged_service.yaml
