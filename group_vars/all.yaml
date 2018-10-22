@@ -1,0 +1,4 @@
+---
+# Prompt
+root_prompt_pattern: "{{ RED }}[{{ END }}{{ CYAN }}\\u{{ END }}{{ LIGHT_GRAY }}@{{ END }}{{ RED }}\\h \\W]\\$ {{ END }}"
+default_prompt_pattern: "{{ GREEN }}[{{ END }}{{ CYAN }}\\u{{ END }}{{ LIGHT_GRAY }}@{{ END }}{{ GREEN }}\\h {{ END }}{{ LIGHT_GRAY }}\\W{{ END }}{{ GREEN }}]\\$ {{ END }}"
