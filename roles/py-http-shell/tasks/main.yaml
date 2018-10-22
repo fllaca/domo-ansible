@@ -22,7 +22,7 @@
   pip: 
     requirements: "{{ py_http_shell_home }}/requirements.txt"
     virtualenv: "{{ py_http_shell_home }}/venv"
-    virtualenv_python: python3
+    virtualenv_python: python2
 
 - name: Install service
   template:
@@ -31,6 +31,7 @@
 
 - name: Start service
   systemd: 
-    state: started 
+    state: restarted 
     name: httpshell
     daemon_reload: yes
+    enabled: yes
