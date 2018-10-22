@@ -1,3 +1,4 @@
 *.retry
-inventory
+*.inventory.ini
+*.inventory.yaml
 secrets.yaml
